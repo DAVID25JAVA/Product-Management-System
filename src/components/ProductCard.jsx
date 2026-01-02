@@ -1,5 +1,4 @@
-// src/components/ProductCard.js
-import React from 'react';
+ 
 import { Edit2 } from 'lucide-react';
 
 const ProductCard = ({ product, onEdit }) => {
@@ -9,13 +8,13 @@ const ProductCard = ({ product, onEdit }) => {
         <h3 className="text-xl font-semibold text-gray-900">{product.name}</h3>
         <button
           onClick={() => onEdit(product)}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-orange-500 hover:text-orange-700"
         >
           <Edit2 className="w-5 h-5" />
         </button>
       </div>
       <div className="space-y-2">
-        <p className="text-2xl font-bold text-blue-600">${product.price}</p>
+        <p className="text-2xl font-bold text-orange-600">${product.price}</p>
         <p className="text-sm text-gray-600">
           <span className="font-medium">Category:</span> {product.category}
         </p>

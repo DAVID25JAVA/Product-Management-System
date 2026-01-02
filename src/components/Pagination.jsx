@@ -1,5 +1,4 @@
-// src/components/Pagination.js
-import React from "react";
+ 
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
@@ -20,7 +19,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           onClick={() => onPageChange(i + 1)}
           className={`px-4 py-2 rounded-lg ${
             currentPage === i + 1
-              ? "bg-blue-500 text-white"
+              ? "bg-orange-500 text-white"
               : "border border-gray-300 hover:bg-gray-50"
           }`}
         >

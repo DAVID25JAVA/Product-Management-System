@@ -1,5 +1,4 @@
-// src/components/EmptyState.js
-import React from 'react';
+ 
 
 const EmptyState = () => {
   return (

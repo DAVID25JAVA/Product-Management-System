@@ -1,29 +1,30 @@
-// src/components/ProductModal.js
-import React from 'react';
-import { X } from 'lucide-react';
-import FormInput from './FormInput';
-import FormTextarea from './FormTextArea';
+import { X } from "lucide-react";
+import FormInput from "./FormInput";
+import FormTextarea from "./FormTextArea";
 
-const ProductModal = ({ 
-  isOpen, 
-  editingProduct, 
-  formData, 
-  errors, 
-  onClose, 
-  onSubmit, 
-  onChange, 
-  onKeyPress 
+const ProductModal = ({
+  isOpen,
+  editingProduct,
+  formData,
+  errors,
+  onClose,
+  onSubmit,
+  onChange,
+  onKeyPress,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0  backdrop-blur-lg  bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center p-6 border-b">
           <h2 className="text-2xl font-bold text-gray-900">
-            {editingProduct ? 'Edit Product' : 'Add Product'}
+            {editingProduct ? "Edit Product" : "Add Product"}
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600"
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -71,7 +72,7 @@ const ProductModal = ({
             error={errors.stock}
           />
 
-          <FormTextArea
+          <FormTextarea
             label="Description"
             name="description"
             value={formData.description}
@@ -82,15 +83,15 @@ const ProductModal = ({
           <div className="flex gap-3 pt-4">
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="flex-1 px-4 py-2 cursor-pointer border border-gray-300 rounded-lg hover:bg-gray-50"
             >
               Cancel
             </button>
             <button
               onClick={onSubmit}
-              className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="flex-1 px-4 cursor-pointer py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
             >
-              {editingProduct ? 'Update' : 'Add'} Product
+              {editingProduct ? "Update" : "Add"} Product
             </button>
           </div>
         </div>

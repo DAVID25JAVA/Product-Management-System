@@ -1,5 +1,4 @@
-// src/components/ProductGrid.js
-import React from 'react';
+ 
 import ProductCard from './ProductCard';
 
 const ProductGrid = ({ products, onEdit }) => {

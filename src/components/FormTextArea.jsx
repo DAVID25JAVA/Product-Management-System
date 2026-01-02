@@ -1,5 +1,3 @@
-// src/components/FormTextarea.js
-import React from 'react';
 
 const FormTextarea = ({ label, name, value, onChange, ...props }) => {
   return (
@@ -11,7 +9,7 @@ const FormTextarea = ({ label, name, value, onChange, ...props }) => {
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
         {...props}
       />
     </div>

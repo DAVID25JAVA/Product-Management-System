@@ -1,30 +1,29 @@
-// src/App.js
-import React, { useState, useEffect, useMemo } from 'react';
-import { DUMMY_PRODUCTS } from './assets/assets';
-import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import ViewToggle from './components/ViewToggle';
-import AddProductButton from './components/AddProductButton';
-import ProductGrid from './components/ProductGrid';
-import ProductTable from './components/ProductTable';
-import EmptyState from './components/EmptyState';
-import Pagination from './components/Pagination';
-import ProductModal from './components/ProductModel';
+import { useState, useEffect, useMemo } from "react";
+import { DUMMY_PRODUCTS } from "./assets/assets";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import ViewToggle from "./components/ViewToggle";
+import AddProductButton from "./components/AddProductButton";
+import ProductGrid from "./components/ProductGrid";
+import ProductTable from "./components/ProductTable";
+import EmptyState from "./components/EmptyState";
+import Pagination from "./components/Pagination";
+import ProductModal from "./components/ProductModel";
 
 const App = () => {
   const [products, setProducts] = useState(DUMMY_PRODUCTS);
-  const [viewMode, setViewMode] = useState('grid');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [viewMode, setViewMode] = useState("grid");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    category: '',
-    stock: '',
-    description: ''
+    name: "",
+    price: "",
+    category: "",
+    stock: "",
+    description: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -42,7 +41,7 @@ const App = () => {
 
   // Filter products based on search
   const filteredProducts = useMemo(() => {
-    return products.filter(product =>
+    return products.filter((product) =>
       product.name.toLowerCase().includes(debouncedSearch.toLowerCase())
     );
   }, [products, debouncedSearch]);
@@ -50,28 +49,38 @@ const App = () => {
   // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   // Form validation
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
-      newErrors.name = 'Product name is required';
+      newErrors.name = "Product name is required";
     }
-    
-    if (!formData.price || isNaN(formData.price) || Number(formData.price) <= 0) {
-      newErrors.price = 'Valid price is required';
+
+    if (
+      !formData.price ||
+      isNaN(formData.price) ||
+      Number(formData.price) <= 0
+    ) {
+      newErrors.price = "Valid price is required";
     }
-    
+
     if (!formData.category.trim()) {
-      newErrors.category = 'Category is required';
+      newErrors.category = "Category is required";
     }
-    
-    if (formData.stock && (isNaN(formData.stock) || Number(formData.stock) < 0)) {
-      newErrors.stock = 'Stock must be a valid number';
+
+    if (
+      formData.stock &&
+      (isNaN(formData.stock) || Number(formData.stock) < 0)
+    ) {
+      newErrors.stock = "Stock must be a valid number";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -84,11 +93,13 @@ const App = () => {
       ...formData,
       price: Number(formData.price),
       stock: formData.stock ? Number(formData.stock) : 0,
-      id: editingProduct ? editingProduct.id : Date.now()
+      id: editingProduct ? editingProduct.id : Date.now(),
     };
 
     if (editingProduct) {
-      setProducts(products.map(p => p.id === editingProduct.id ? productData : p));
+      setProducts(
+        products.map((p) => (p.id === editingProduct.id ? productData : p))
+      );
     } else {
       setProducts([...products, productData]);
     }
@@ -105,16 +116,16 @@ const App = () => {
         price: product.price.toString(),
         category: product.category,
         stock: product.stock.toString(),
-        description: product.description || ''
+        description: product.description || "",
       });
     } else {
       setEditingProduct(null);
       setFormData({
-        name: '',
-        price: '',
-        category: '',
-        stock: '',
-        description: ''
+        name: "",
+        price: "",
+        category: "",
+        stock: "",
+        description: "",
       });
     }
     setErrors({});
@@ -126,11 +137,11 @@ const App = () => {
     setShowModal(false);
     setEditingProduct(null);
     setFormData({
-      name: '',
-      price: '',
-      category: '',
-      stock: '',
-      description: ''
+      name: "",
+      price: "",
+      category: "",
+      stock: "",
+      description: "",
     });
     setErrors({});
   };
@@ -138,15 +149,15 @@ const App = () => {
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   // Handle Enter key press
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
     }
@@ -159,8 +170,11 @@ const App = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Search and View Controls */}
         <div className="mb-6 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-          <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-          
+          <SearchBar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+
           <div className="flex gap-3">
             <ViewToggle viewMode={viewMode} onViewChange={setViewMode} />
             <AddProductButton onClick={() => handleOpenModal()} />
@@ -170,17 +184,17 @@ const App = () => {
         {/* Products Display */}
         {paginatedProducts.length === 0 ? (
           <EmptyState />
-        ) : viewMode === 'grid' ? (
+        ) : viewMode === "grid" ? (
           <ProductGrid products={paginatedProducts} onEdit={handleOpenModal} />
         ) : (
           <ProductTable products={paginatedProducts} onEdit={handleOpenModal} />
         )}
 
         {/* Pagination */}
-        <Pagination 
-          currentPage={currentPage} 
-          totalPages={totalPages} 
-          onPageChange={setCurrentPage} 
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
         />
       </div>
 

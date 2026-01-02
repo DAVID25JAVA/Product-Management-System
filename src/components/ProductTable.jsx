@@ -1,5 +1,4 @@
-// src/components/ProductTable.js
-import React from 'react';
+ 
 import ProductTableRow from './ProductTableRow';
 
 const ProductTable = ({ products, onEdit }) => {

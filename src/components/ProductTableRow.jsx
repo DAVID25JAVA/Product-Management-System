@@ -1,5 +1,4 @@
-// src/components/ProductTableRow.js
-import React from 'react';
+ 
 import { Edit2 } from 'lucide-react';
 
 const ProductTableRow = ({ product, onEdit }) => {
@@ -8,7 +7,7 @@ const ProductTableRow = ({ product, onEdit }) => {
       <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
         {product.name}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-blue-600 font-semibold">
+      <td className="px-6 py-4 whitespace-nowrap text-orange-600 font-semibold">
         ${product.price}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-gray-600">
@@ -23,7 +22,7 @@ const ProductTableRow = ({ product, onEdit }) => {
       <td className="px-6 py-4 whitespace-nowrap">
         <button
           onClick={() => onEdit(product)}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-orange-500 cursor-pointer hover:text-orange-700"
         >
           <Edit2 className="w-5 h-5" />
         </button>
